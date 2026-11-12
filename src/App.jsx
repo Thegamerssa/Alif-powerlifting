@@ -116,19 +116,23 @@ const MyProgramTab = () => {
   const program = [
     {
       day: 'Day 1',
-      title: 'Heavy Squat & Volume Bench',
-      focus: 'Lower Body Primary',
+      title: 'Push day ',
+      focus: 'Upper Body Primary(Chest, Shoulders, Triceps)',
       exercises: [
-        { name: 'Comp Squat', sets: '1 x 1 @ 8, 4 x 5 @ 75%' },
-        { name: 'Paused Bench Press', sets: '4 x 8 @ 65%' },
-        { name: 'Bulgarian Split Squats', sets: '3 x 10 / leg' },
-        { name: 'Core Variations', sets: '3 x 15' }
+        { name: 'Bench Press', sets: '1 x 1 @ 8, 4 x 5 @ 75%' },
+        { name: 'incline dumbbell Bench Press', sets: '4 x 8 @ 65%' },
+        { name: 'Shoulder press', sets: '3 x 10 ' },
+        { name: 'Rear Delt Flyes', sets: '3 x 12' },
+        { name: 'lat raise', sets: '3 x 12' },
+        { name: 'Tricep Extensions', sets: '3 x 12'},
+        { name: 'Skull crushers', sets: '3 x 12' }
       ]
     },
     {
       day: 'Day 2',
-      title: 'Heavy Bench & Accessories',
-      focus: 'Upper Body Primary',
+      title: 'Squat, Deadlift & Accessories',
+      focus: 'Squat priority and legs accessories',
+      Ps: 'Light deadlift including alternatives',
       exercises: [
         { name: 'Comp Bench Press', sets: '1 x 1 @ 8, 5 x 4 @ 80%' },
         { name: 'Close Grip Bench', sets: '3 x 8 @ 70%' },
@@ -138,6 +142,17 @@ const MyProgramTab = () => {
     },
     {
       day: 'Day 3',
+      title: 'Pull day with Bench Press & Accessories',
+      focus: 'Full Body Power',
+      exercises: [
+        { name: 'Bench press', sets: '1 x 1 @ 8, 3 x 4 @ 80%' },
+        { name: 'Tempo Squat (3-0-0)', sets: '3 x 6 @ 65%' },
+        { name: 'Hamstring Curls', sets: '3 x 12' },
+        { name: 'Lat Pulldowns', sets: '4 x 10' }
+      ]
+    },
+    {
+      day: 'Day 4',
       title: 'Rest & Active Recovery',
       focus: 'Recovery',
       isRest: true,
@@ -147,8 +162,19 @@ const MyProgramTab = () => {
       ]
     },
     {
-      day: 'Day 4',
-      title: 'Heavy Deadlift & Volume Squat',
+      day: 'Day 5',
+      title: 'Lower Body Power & Accessories',
+      focus: 'Deadlift priority and squat accessories ',
+      exercises: [
+        { name: 'Comp Deadlift', sets: '1 x 1 @ 8, 3 x 4 @ 80%' },
+        { name: 'Tempo Squat (3-0-0)', sets: '3 x 6 @ 65%' },
+        { name: 'Hamstring Curls', sets: '3 x 12' },
+        { name: 'Lat Pulldowns', sets: '4 x 10' }
+      ]
+    },
+    {
+      day: 'Day 6',
+      title: 'upper body power with Bench Press & Arm accessories',
       focus: 'Full Body Power',
       exercises: [
         { name: 'Comp Deadlift', sets: '1 x 1 @ 8, 3 x 4 @ 80%' },
@@ -156,7 +182,17 @@ const MyProgramTab = () => {
         { name: 'Hamstring Curls', sets: '3 x 12' },
         { name: 'Lat Pulldowns', sets: '4 x 10' }
       ]
-    }
+    },
+    {
+      day: 'Day 7',
+      title: 'Rest & Active Recovery',
+      focus: 'Recovery',
+      isRest: true,
+      exercises: [
+        { name: 'Light Cardio', sets: '20-30 mins' },
+        { name: 'Mobility Routine', sets: '15 mins' }
+      ]
+    },
   ];
 
   return (
