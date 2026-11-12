@@ -4,8 +4,9 @@ import { InstagramEmbed } from 'react-social-media-embed';
 
 const Header = ({ activeTab, setActiveTab }) => {
   const tabs = [
-    { id: 'lifts', label: 'My Lifts', icon: Activity },
+    { id: 'lifts', label: 'My Best Lifts', icon: Activity },
     { id: 'program', label: 'My Program', icon: Calendar },
+    { id: 'split', label: 'Training Split for Casuals', icon: Dumbbell },
     { id: 'technique', label: 'Technique', icon: Video },
   ];
 
@@ -19,8 +20,8 @@ const Header = ({ activeTab, setActiveTab }) => {
               <Dumbbell className="w-6 h-6 text-white" />
             </div>
             <div>
-              <h1 className="text-xl font-black text-white tracking-wider uppercase">Strength<span className="text-red-600">Vault</span></h1>
-              <p className="text-xs text-zinc-400 font-medium tracking-widest">Powerlifting Portfolio</p>
+              <h1 className="text-xl font-black text-white tracking-wider uppercase">Alif<span className="text-red-600"> Powerlifting</span></h1>
+              <p className="text-xs text-zinc-400 font-medium tracking-widest">Powerlifting Athlete</p>
             </div>
           </div>
 
@@ -93,13 +94,13 @@ const MyLiftsTab = () => {
     { id: 3, title: 'Bench Press - 80kg (176 lbs)', date: 'Sep 21, 2025', pr: false, igUrl: 'https://www.instagram.com/p/DO2WJ4iDFLG/' },
     { id: 4, title: 'Squat - 200kg (440 lbs)', date: 'Sep 15, 2026', pr: false, igUrl: 'https://www.instagram.com/p/DdTwqpdTM2b/' },
     { id: 5, title: 'Deadlift - 200kg x 2 reps', date: 'Sep 17, 2026', pr: false, igUrl: 'https://www.instagram.com/p/DdYMu1PzJNj/' },
-    { id: 6, title: 'Bench Press - 72.5kg x 3 reps', date: 'Aug 27, 2026', pr: false, igUrl: 'https://www.instagram.com/stories/highlights/18129804676726639/' },
+    { id: 6, title: 'Bench Press - 72.5kg x 3 reps', date: 'Aug 27, 2026', pr: false, igUrl: 'https://www.instagram.com/p/DOVqrJQjKKk/' },
   ];
 
   return (
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-8">
-        <h2 className="text-3xl font-black text-white uppercase tracking-tight">Meet <span className="text-red-500">Highlights</span></h2>
+        <h2 className="text-3xl font-black text-white uppercase tracking-tight">My Best PRs <span className="text-red-500">Lifts</span></h2>
         <p className="text-zinc-400 mt-2 max-w-2xl">A collection of my top competition lifts and recent personal records. Tracking progress one plate at a time.</p>
       </div>
       
@@ -113,6 +114,251 @@ const MyLiftsTab = () => {
 };
 
 const MyProgramTab = () => {
+  const [selectedBlock, setSelectedBlock] = useState(1);
+
+  const blocks = [
+    {
+      id: 1,
+      name: 'Block 1: Hypertrophy',
+      duration: '5 Weeks',
+      volume: 'High Volume',
+      intensity: 'Low Intensity',
+      sbdScheme: '5 sets x 5 reps (High Volume / Low Intensity)',
+      description: 'Building work capacity, muscle mass, and technical consistency on SBD.',
+    },
+    {
+      id: 2,
+      name: 'Block 2: Strength',
+      duration: '4 Weeks',
+      volume: 'Low Volume',
+      intensity: 'Med–High Intensity',
+      sbdScheme: '3 sets x 3 reps (Low Volume / Med-High Intensity)',
+      description: 'Transitioning hypertrophy gains into maximal force production under heavier loads.',
+    },
+    {
+      id: 3,
+      name: 'Block 3: Peaking',
+      duration: '4 Weeks',
+      volume: 'Lowest Volume',
+      intensity: 'Max Intensity',
+      sbdScheme: '1 Heavy Rep or 2 x 2 (Lowest Volume / Max Intensity)',
+      description: 'Dissipating fatigue and mastering maximal attempts. Ends with PR / Mock Meet!',
+    }
+  ];
+
+  const currentBlock = blocks.find((b) => b.id === selectedBlock);
+
+  const program = [
+    {
+      day: 'Day 1',
+      title: 'Push Day',
+      focus: 'Upper Body Primary (Chest, Shoulders, Triceps)',
+      exercises: [
+        { name: 'Comp Bench Press (SBD)', sets: currentBlock.sbdScheme, isSBD: true },
+        { name: 'Incline Dumbbell Bench Press', sets: '4 x 8 @ 65%' },
+        { name: 'Shoulder Press', sets: '3 x 10' },
+        { name: 'Rear Delt Flyes', sets: '3 x 12' },
+        { name: 'Lateral Raises', sets: '3 x 12' },
+        { name: 'Tricep Extensions', sets: '3 x 12' },
+        { name: 'Skull Crushers', sets: '3 x 12' }
+      ]
+    },
+    {
+      day: 'Day 2',
+      title: 'Squat, Deadlift & Accessories',
+      focus: 'Squat Priority & Leg Accessories',
+      note: 'PS: Light deadlift including alternatives',
+      exercises: [
+        { name: 'Comp Squat (SBD)', sets: currentBlock.sbdScheme, isSBD: true },
+        { name: 'Light / Pause Deadlift (SBD Alt)', sets: '3 x 5 @ RPE 6-7', isSBD: true },
+        { name: 'Bulgarian Split Squats', sets: '3 x 10 / leg' },
+        { name: 'Leg Extensions', sets: '3 x 12' },
+        { name: 'Core Variations', sets: '3 x 15' }
+      ]
+    },
+    {
+      day: 'Day 3',
+      title: 'Pull Day with Bench Press & Accessories',
+      focus: 'Upper Body Pull & Bench',
+      exercises: [
+        { name: 'Comp Bench Press (SBD)', sets: currentBlock.sbdScheme, isSBD: true },
+        { name: 'Lat Pulldowns', sets: '4 x 10' },
+        { name: 'Chest Supported Rows', sets: '4 x 10' },
+        { name: 'Face Pulls', sets: '3 x 15' },
+        { name: 'Bicep Curls', sets: '3 x 12' }
+      ]
+    },
+    {
+      day: 'Day 4',
+      title: 'Rest & Active Recovery',
+      focus: 'Recovery',
+      isRest: true,
+      exercises: [
+        { name: 'Light Cardio', sets: '20-30 mins' },
+        { name: 'Mobility Routine', sets: '15 mins' }
+      ]
+    },
+    {
+      day: 'Day 5',
+      title: 'Lower Body Power & Accessories',
+      focus: 'Deadlift Priority & Squat Accessories',
+      exercises: [
+        { name: 'Comp Deadlift (SBD)', sets: currentBlock.sbdScheme, isSBD: true },
+        { name: 'Tempo Squat (3-0-0) (SBD)', sets: '3 x 5 @ 65-70%', isSBD: true },
+        { name: 'Hamstring Curls', sets: '3 x 12' },
+        { name: 'RDLs / Back Extensions', sets: '3 x 10' }
+      ]
+    },
+    {
+      day: 'Day 6',
+      title: 'Upper Body Power with Bench Press & Arm Accessories',
+      focus: 'Bench & Arms Focus',
+      exercises: [
+        { name: 'Comp Bench Press (SBD)', sets: currentBlock.sbdScheme, isSBD: true },
+        { name: 'Close Grip Bench Press', sets: '3 x 8 @ 70%' },
+        { name: 'Hammer Curls', sets: '3 x 12' },
+        { name: 'Overhead Tricep Extensions', sets: '3 x 12' },
+        { name: 'Lateral Raises', sets: '3 x 15' }
+      ]
+    },
+    {
+      day: 'Day 7',
+      title: 'Rest & Active Recovery',
+      focus: 'Recovery',
+      isRest: true,
+      exercises: [
+        { name: 'Light Cardio', sets: '20-30 mins' },
+        { name: 'Mobility Routine', sets: '15 mins' }
+      ]
+    },
+  ];
+
+  return (
+    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
+      {/* Header & 3-Month Overview */}
+      <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight">
+            13-Week <span className="text-red-500">Program Cycle</span>
+          </h2>
+          <p className="text-zinc-400 mt-2 max-w-2xl">
+            Full 3-month macrocycle divided into 3 distinct training blocks leading up to a final PR / Mock Meet test. Select a block below to see how SBD volume and intensity adjust.
+          </p>
+        </div>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 flex items-center gap-2 w-max">
+          <span className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+          <span className="text-sm font-bold text-zinc-200">3-Month Full Cycle (13 Weeks)</span>
+        </div>
+      </div>
+
+      {/* 3 Training Block Selector Cards */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        {blocks.map((block) => {
+          const isSelected = block.id === selectedBlock;
+          return (
+            <button
+              key={block.id}
+              onClick={() => setSelectedBlock(block.id)}
+              className={`text-left p-5 rounded-xl border transition-all duration-300 cursor-pointer ${
+                isSelected
+                  ? 'bg-red-600/10 border-red-500 shadow-lg shadow-red-600/10'
+                  : 'bg-zinc-900 border-zinc-800 hover:border-zinc-700'
+              }`}
+            >
+              <div className="flex justify-between items-center mb-2">
+                <span className={`text-xs font-black uppercase px-2.5 py-1 rounded ${
+                  isSelected ? 'bg-red-600 text-white' : 'bg-zinc-800 text-zinc-400'
+                }`}>
+                  {block.duration}
+                </span>
+                <span className="text-xs font-semibold text-zinc-400">
+                  {block.volume} • {block.intensity}
+                </span>
+              </div>
+              <h3 className="text-lg font-black text-white mt-2">{block.name}</h3>
+              <p className="text-xs text-zinc-400 mt-1 leading-relaxed">{block.description}</p>
+              <div className="mt-4 pt-3 border-t border-zinc-800/80 flex items-center justify-between">
+                <span className="text-xs text-zinc-500 font-semibold uppercase">SBD Prescription:</span>
+                <span className="text-xs font-bold text-red-400">{block.sbdScheme.split(' (')[0]}</span>
+              </div>
+            </button>
+          );
+        })}
+      </div>
+
+      {/* End of Block 3 Goal Banner */}
+      <div className={`mb-10 rounded-xl p-4 border flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 transition-colors ${
+        selectedBlock === 3 
+          ? 'bg-gradient-to-r from-red-950/60 to-zinc-900 border-red-500/60' 
+          : 'bg-zinc-900/60 border-zinc-800'
+      }`}>
+        <div className="flex items-center gap-3">
+          <div className="bg-red-600 text-white font-black text-xs px-3 py-1.5 rounded uppercase tracking-wider">
+            End of Block 3 Goal
+          </div>
+          <p className="text-sm text-zinc-200 font-semibold">
+            Max Out & Hit New Personal Records (PR) on Squat, Bench, and Deadlift!
+          </p>
+        </div>
+        <span className="text-xs text-zinc-400 font-medium">
+          Currently viewing: <strong className="text-white">{currentBlock.name}</strong>
+        </span>
+      </div>
+
+      {/* Weekly 7-Day Split */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {program.map((day, idx) => (
+          <div
+            key={idx}
+            className={`relative rounded-xl border p-6 flex flex-col ${
+              day.isRest ? 'bg-zinc-900/40 border-zinc-800/50' : 'bg-zinc-900 border-zinc-800'
+            }`}
+          >
+            <div className="flex justify-between items-start mb-4 gap-2">
+              <div>
+                <span className="text-red-500 font-bold text-sm tracking-wider uppercase">{day.day}</span>
+                <h3 className="text-xl font-bold text-white mt-1">{day.title}</h3>
+                {day.note && (
+                  <p className="text-xs text-amber-400/90 font-medium mt-1">{day.note}</p>
+                )}
+              </div>
+              <span
+                className={`text-xs font-semibold px-3 py-1 rounded-full whitespace-nowrap ${
+                  day.isRest ? 'bg-emerald-500/10 text-emerald-400' : 'bg-zinc-800 text-zinc-300'
+                }`}
+              >
+                {day.focus}
+              </span>
+            </div>
+
+            <div className="space-y-3 flex-grow mt-2">
+              {day.exercises.map((ex, exIdx) => (
+                <div
+                  key={exIdx}
+                  className={`flex flex-col sm:flex-row sm:justify-between sm:items-center p-3 rounded-lg transition-colors gap-1 ${
+                    ex.isSBD
+                      ? 'bg-red-950/30 border border-red-500/30'
+                      : 'bg-zinc-950/50 hover:bg-zinc-950'
+                  }`}
+                >
+                  <span className="text-zinc-200 font-medium flex items-center gap-2">
+                    <ChevronRight className="w-4 h-4 text-red-600 shrink-0" />
+                    {ex.name}
+                  </span>
+                  <span className={`text-sm font-semibold ${ex.isSBD ? 'text-red-400' : 'text-zinc-400'}`}>
+                    {ex.sets}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+const TrainingSplitTab = () => {
   const program = [
     {
       day: 'Day 1',
@@ -124,7 +370,7 @@ const MyProgramTab = () => {
         { name: 'Shoulder press', sets: '3 x 10 ' },
         { name: 'Rear Delt Flyes', sets: '3 x 12' },
         { name: 'lat raise', sets: '3 x 12' },
-        { name: 'Tricep Extensions', sets: '3 x 12'},
+        { name: 'Tricep Extensions', sets: '3 x 12' },
         { name: 'Skull crushers', sets: '3 x 12' }
       ]
     },
@@ -199,22 +445,25 @@ const MyProgramTab = () => {
     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div>
-          <h2 className="text-3xl font-black text-white uppercase tracking-tight">Current <span className="text-red-500">Block</span></h2>
+          <h2 className="text-3xl font-black text-white uppercase tracking-tight">Training <span className="text-red-500">Split</span></h2>
           <p className="text-zinc-400 mt-2 max-w-2xl">Hypertrophy & Strength block leading up to the Winter Open. Focus on building base volume.</p>
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-lg px-4 py-2 flex items-center gap-2 w-max">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-          <span className="text-sm font-medium text-zinc-300">Week 4 of 8</span>
+          <span className="text-sm font-medium text-zinc-300">For Casual/Intermediate Athletes</span>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {program.map((day, idx) => (
           <div key={idx} className={`relative rounded-xl border p-6 flex flex-col ${day.isRest ? 'bg-zinc-900/50 border-zinc-800/50' : 'bg-zinc-900 border-zinc-800'}`}>
-            <div className="flex justify-between items-start mb-6">
+            <div className="flex justify-between items-start mb-6 gap-2">
               <div>
                 <span className="text-red-500 font-bold text-sm tracking-wider uppercase">{day.day}</span>
                 <h3 className="text-xl font-bold text-white mt-1">{day.title}</h3>
+                {day.Ps && (
+                  <p className="text-xs text-amber-400/90 font-medium mt-1">PS: {day.Ps}</p>
+                )}
               </div>
               <span className={`text-xs font-semibold px-3 py-1 rounded-full ${day.isRest ? 'bg-emerald-500/10 text-emerald-400' : 'bg-zinc-800 text-zinc-300'}`}>
                 {day.focus}
@@ -321,6 +570,7 @@ export default function App() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {activeTab === 'lifts' && <MyLiftsTab />}
         {activeTab === 'program' && <MyProgramTab />}
+        {activeTab === 'split' && <TrainingSplitTab />}
         {activeTab === 'technique' && <TechniqueTab />}
       </main>
 
